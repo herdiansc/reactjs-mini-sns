@@ -21,6 +21,11 @@ class Users extends React.Component {
     render() {
         return (
             <div className="container">
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item active" aria-current="page">Users</li>
+                    </ol>
+                </nav>
                 <div className="row">
                     <div className="col-md-12">
                         <div className="albums mt-4 mb-4 pt-4 pb-4">

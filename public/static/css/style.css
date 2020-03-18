@@ -102,7 +102,9 @@ hr {
   border-radius: 2px;
   background-clip: padding-box;
   margin: 0 0 1rem 0;
-  overflow: hidden; }
+  overflow: hidden; 
+  z-index: 999;
+}
   .progress .determinate {
     position: absolute;
     background-color: inherit;

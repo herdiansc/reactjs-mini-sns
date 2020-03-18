@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; 
 import { connect } from "react-redux";
 import { getAlbumPhotos } from '../actions';
 
@@ -26,15 +27,16 @@ class Users extends React.Component {
     }
 
     handleShowModal(photo, e) {
+        e.preventDefault();
         this.setState({photo: photo});
     }
 
     render() {
         return (
             <div className="container">
-                <div className="text-center py-5 mb-4">
-                    <div className="container">
-                        <h1 className="font-weight-light">Photos</h1>
+                <div className="row">
+                    <div className="col-md-12 py-5 mb-4">
+                        <h3 className="">Photos</h3>
                     </div>
                 </div>
 
@@ -44,10 +46,10 @@ class Users extends React.Component {
                             return (
                                 <div key={i} className="col-xl-3 col-md-6 mb-4">
                                     <div className="card border-0 shadow">
-                                        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={(e) => this.handleShowModal(photo, e)}>
+                                        <Link to="" data-toggle="modal" data-target="#exampleModal" onClick={(e) => this.handleShowModal(photo, e)}>
                                             <input className="photo-url" value={photo.url} type="hidden" /> 
                                             <img src={ photo.thumbnailUrl } className="card-img-top" alt="..." />
-                                        </button>
+                                        </Link>
                                     </div>
                                 </div>
                             )
@@ -56,22 +58,21 @@ class Users extends React.Component {
                 </div>
 
                 <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-                <div className="modal-dialog modal-dialog-centered" role="document">
-    <div className="modal-content">
-        <img src={this.state.photo.url} className="card-img-top" alt="..." />
-        <div className="container">
-            <div className="row pt-4 pb-4">
-                <div className="col-md-12">
-                    { this.state.photo.title }
-                </div>
-            </div>
-            <div className="modal-footer">
-                <button type="button" className="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <img src={this.state.photo.url} className="card-img-top" alt="..." />
+                            <div className="container">
+                                <div className="row pt-4 pb-4">
+                                    <div className="col-md-12">
+                                        { this.state.photo.title }
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
