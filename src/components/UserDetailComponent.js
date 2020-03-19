@@ -23,15 +23,22 @@ class UserDetail extends React.Component {
         this.props.getPosts(params.user_id);
     }
 
+    breadcrumb() {
+        return (
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><Link to={`/`}>Home</Link></li>
+                    <li className="breadcrumb-item"><Link to={`/user`}>Users</Link></li>
+                    <li class="breadcrumb-item active" aria-current="page">{ this.props.user.name }</li>
+                </ol>
+            </nav>
+        )
+    }
+
     render() {
         return (
             <div className="container">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><Link to={`/user`}>Users</Link></li>
-                        <li class="breadcrumb-item active" aria-current="page">{ this.props.user.name }</li>
-                    </ol>
-                </nav>
+                { this.breadcrumb() }
                 <div className="row">
                     <div className="col-md-12">
                         <div className="post mt-4 mb-4 pt-4 pb-4">

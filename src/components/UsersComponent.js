@@ -18,14 +18,21 @@ class Users extends React.Component {
         this.props.getUsers({});
     }
 
+    breadcrumb() {
+        return (
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><Link to={`/`}>Home</Link></li>
+                    <li className="breadcrumb-item active" aria-current="page">Users</li>
+                </ol>
+            </nav>
+        )
+    }
+
     render() {
         return (
             <div className="container">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item active" aria-current="page">Users</li>
-                    </ol>
-                </nav>
+                { this.breadcrumb() }
                 <div className="row">
                     <div className="col-md-12">
                         <div className="albums mt-4 mb-4 pt-4 pb-4">

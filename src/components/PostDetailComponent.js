@@ -26,6 +26,7 @@ class PostDetail extends React.Component {
         return (
             <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
+                <li className="breadcrumb-item"><Link to={`/`}>Home</Link></li>
                 <li className="breadcrumb-item"><Link to={`/user`}>Users</Link></li>
                 <li className="breadcrumb-item"><Link to={`/user/detail/${ this.props.post.userId }`}>{ name }</Link></li>
                 <li class="breadcrumb-item active" aria-current="page">Post</li>
