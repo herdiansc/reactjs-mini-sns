@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { getAlbumPhotos } from '../actions';
 
 const mapStateToProps = state => {
-    return { photos: state.photos };
+    return { photos: state.photos, user: state.user };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -31,9 +31,27 @@ class Users extends React.Component {
         this.setState({photo: photo});
     }
 
+    breadcrumb() {
+        let userDetail
+        if (Object.keys(this.props.user).length > 0) {
+            userDetail = <li className="breadcrumb-item"><Link to={`/user/detail/${ this.props.user.id }`}>{ this.props.user.name }</Link></li>
+        }
+
+        return (
+            <nav aria-label="breadcrumb">
+            <ol className="breadcrumb">
+                <li className="breadcrumb-item"><Link to={`/user`}>Users</Link></li>
+                { userDetail }
+                <li class="breadcrumb-item active" aria-current="page">Photos</li>
+            </ol>
+        </nav>
+        )
+    }
+
     render() {
         return (
             <div className="container">
+                { this.breadcrumb() }
                 <div className="row">
                     <div className="col-md-12 py-5 mb-4">
                         <h3 className="">Photos</h3>

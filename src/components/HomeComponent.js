@@ -7,7 +7,7 @@ class HomeComponent extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <div className="jumbotron jumbotron-fluid">
+                        <div className="jumbotron jumbotron-fluid bg-kumparan">
                             <div className="container">
                                 <h1 className="display-4">JSON Server Client App</h1>
                                 <p className="lead">This is a client app to show built-in json server resources. Developed using react js.</p>

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { getPostDetail, getPostComments } from '../actions';
 
 const mapStateToProps = state => {
-    return { post: state.post, comments: state.comments };
+    return { post: state.post, comments: state.comments, user: state.user };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -21,16 +21,23 @@ class PostDetail extends React.Component {
         this.props.getPostComments(params.post_id);
     }
 
+    breadcrumb() {
+        let name = this.props.user.name || 'User Detail';
+        return (
+            <nav aria-label="breadcrumb">
+            <ol className="breadcrumb">
+                <li className="breadcrumb-item"><Link to={`/user`}>Users</Link></li>
+                <li className="breadcrumb-item"><Link to={`/user/detail/${ this.props.post.userId }`}>{ name }</Link></li>
+                <li class="breadcrumb-item active" aria-current="page">Post</li>
+            </ol>
+        </nav>
+        )
+    }
+
     render() {
         return (
             <div className="container">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><Link to={`/user`}>Users</Link></li>
-                        <li className="breadcrumb-item"><Link to={`/user`}>Users</Link></li>
-                        <li class="breadcrumb-item active" aria-current="page">Post</li>
-                    </ol>
-                </nav>
+                { this.breadcrumb() }
                 <div className="row">
                     <div className="col-md-12">
                         <div className="post mt-4 mb-4 pt-4 pb-4">
