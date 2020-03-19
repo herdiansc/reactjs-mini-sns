@@ -4,7 +4,7 @@ import {
     SET_WRITE_ACCESS_RESPONSE
 } from './constants';
 
-export function getUsers(payload) {
+export function getUsers() {
 	// scroll(0,0);
 	return dispatch => {
 		dispatch({ type: START_FETCHING });
@@ -119,5 +119,51 @@ export function deletePost(payload) {
             .then(response => {
             	dispatch({ type: SET_WRITE_ACCESS_RESPONSE, payload: response.status });
             })
+    }
+}
+
+export function createUser(payload) {
+    return dispatch => {
+        dispatch({ type: START_FETCHING});
+        return fetch(`${ API_SERVER_HOST }/users`, {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                headers: {"Content-type": "application/json; charset=UTF-8"}
+            })
+            .then(response => {
+                dispatch({ type: SET_WRITE_ACCESS_RESPONSE, payload: response.status });
+            })
+    }
+}
+
+export function deleteUser(payload) {
+    return dispatch => {
+        dispatch({ type: START_FETCHING});
+        return fetch(`${ API_SERVER_HOST }/users/${payload}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+            	dispatch({ type: SET_WRITE_ACCESS_RESPONSE, payload: response.status });
+            })
+    }
+}
+
+export function editUser(payload) {
+    return dispatch => {
+        dispatch({ type: START_FETCHING});
+        return fetch(`${ API_SERVER_HOST }/users/${payload.id}`, {
+                method: 'PUT',
+                body: JSON.stringify(payload.data),
+                headers: {"Content-type": "application/json; charset=UTF-8"}
+            })
+            .then(response => {
+                dispatch({ type: SET_WRITE_ACCESS_RESPONSE, payload: response.status });
+            })
+    }
+}
+
+export function closeNotification() {
+    return dispatch => {
+        dispatch({ type: SET_WRITE_ACCESS_RESPONSE, payload: 0 });
     }
 }

@@ -73,8 +73,8 @@ if (action.type === SET_COMMENTS) {
 
   if (action.type === START_FETCHING) {
   	return {
-  		...state,
-  		isLoading: true
+		...state,
+		isLoading: true
   	};
   }
 

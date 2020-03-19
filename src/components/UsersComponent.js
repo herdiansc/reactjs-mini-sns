@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getUsers } from '../actions';
+import { getUsers, createUser } from '../actions';
 import NotificationComponent from './NotificationComponent.js'
 
 const mapStateToProps = state => {
-    return { items: state.users };
+    return { users: state.users };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getUsers: payload => dispatch(getUsers(payload))
+        getUsers: () => dispatch(getUsers()),
+        createUser: payload => dispatch(createUser(payload))
     };
 }
 
@@ -27,9 +28,13 @@ class Users extends React.Component {
         this.city = React.createRef();
         this.suite = React.createRef();
         this.zipcode = React.createRef();
+        this.website = React.createRef();
+        this.street = React.createRef();
+        this.lat = React.createRef();
+        this.long = React.createRef();
     }
     componentDidMount() {
-        this.props.getUsers({});
+        this.props.getUsers();
     }
 
     breadcrumb() {
@@ -60,7 +65,17 @@ class Users extends React.Component {
                             </div>
                             <div className="form-row mb-4">
                                 <div className="col">
+                                    <input type="text" className="form-control" placeholder="Username" ref={this.username} />
+                                </div>
+                            </div>
+                            <div className="form-row mb-4">
+                                <div className="col">
                                     <input type="text" className="form-control" placeholder="Email" ref={this.email} />
+                                </div>
+                            </div>
+                            <div className="form-row mb-4">
+                                <div className="col">
+                                    <input type="text" className="form-control" placeholder="Website" ref={this.website} />
                                 </div>
                             </div>
                             <div className="form-row mb-4">
@@ -68,17 +83,27 @@ class Users extends React.Component {
                                     <input type="text" className="form-control" placeholder="Phone" ref={this.phone} />
                                 </div>
                             </div>
-                            <div className="form-row mb-4">
+                            <hr />
+                            <div className="form-row mb-4 mt-4">
                                 <div className="col">
-                                    <input type="text" className="form-control" placeholder="City" ref={this.city} />
+                                    <input type="text" className="form-control" placeholder="Street" ref={this.street} />
                                 </div>
-                            </div>
-                            <div className="form-row mb-4">
                                 <div className="col">
                                     <input type="text" className="form-control" placeholder="Suite" ref={this.suite} />
                                 </div>
                             </div>
                             <div className="form-row mb-4">
+                                <div className="col">
+                                    <input type="text" className="form-control" placeholder="Lat" ref={this.lat} />
+                                </div>
+                                <div className="col">
+                                    <input type="text" className="form-control" placeholder="Long" ref={this.long} />
+                                </div>
+                            </div>
+                            <div className="form-row mb-4">
+                                <div className="col">
+                                    <input type="text" className="form-control" placeholder="City" ref={this.city} />
+                                </div>
                                 <div className="col">
                                     <input type="text" className="form-control" placeholder="Zipcode" ref={this.zipcode} />
                                 </div>
@@ -87,7 +112,7 @@ class Users extends React.Component {
                                 <div className="col">
                                     <div className="btn-group float-right" role="group">
                                         <button type="button" className="btn bg-default border"  onClick={(e) => this.handleShowUserForm(false, e)}>Cancel</button>
-                                        <button type="button" className="btn text-white bg-kumparan" onClick={(e) => this.handleSubmitPostForm(e)}>Submit</button>
+                                        <button type="button" className="btn text-white bg-kumparan" onClick={(e) => this.handleSubmitUserForm(e)}>Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -96,6 +121,30 @@ class Users extends React.Component {
                 </div>
             )
         }
+    }
+
+    handleSubmitUserForm(e) {
+        this.props.createUser({
+            name: this.name.current.value,
+            username: this.username.current.value,
+            email: this.email.current.value,
+            address: {
+                street: this.street.current.value,
+                suite: this.suite.current.value,
+                city: this.city.current.value,
+                zipcode: this.zipcode.current.value,
+                geo: {
+                    lat: "-38.2386",
+                    lng: "57.2232"
+                }
+            },
+            phone: this.phone.current.value,
+            website: this.website.current.value,
+        })
+        .then(() => {
+            this.props.getUsers();
+        });
+        this.handleShowUserForm(false);
     }
 
     render() {
@@ -118,9 +167,9 @@ class Users extends React.Component {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="list-group">
-                                        {this.props.items.map((item, i) => {
+                                        {this.props.users.map((item, i) => {
                                             return (
-                                                <Link key={i} to={`/user/detail/${item.id}`} className="list-group-item list-group-item-action">
+                                                <Link to={`/user/detail/${item.id}`} key={i} className="list-group-item list-group-item-action">
                                                     <div className="d-flex w-100 justify-content-between">
                                                         <h5 className="mb-1">{ item.name }</h5>
                                                         <small>@{ item.username }</small>
