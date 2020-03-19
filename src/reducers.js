@@ -1,5 +1,6 @@
 import {
-    SET_USERS, SET_USER_DETAIL, SET_ALBUMS, SET_PHOTOS, START_FETCHING, SET_POSTS, SET_POST, SET_COMMENTS
+	SET_USERS, SET_USER_DETAIL, SET_ALBUMS, SET_PHOTOS, START_FETCHING, SET_POSTS, SET_POST, SET_COMMENTS,
+	SET_WRITE_ACCESS_RESPONSE
 } from './constants';
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   posts: [],
   post: {},
   comments: [],
+  writeAccessResponseCode: 0,
   isLoading: false
 };
 function rootReducer(state = initialState, action) {
@@ -76,12 +78,13 @@ if (action.type === SET_COMMENTS) {
   	};
   }
 
-//   if (action.type === SET_PAGE) {
-//   	return {
-//   		...state,
-//   		page: action.payload
-//   	};
-//   }
+  if (action.type === SET_WRITE_ACCESS_RESPONSE) {
+  	return {
+		...state,
+		writeAccessResponseCode: action.payload,
+		isLoading: false
+  	};
+  }
 
   return state;
 }
