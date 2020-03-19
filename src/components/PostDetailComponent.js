@@ -152,7 +152,7 @@ class PostDetail extends React.Component {
                                                 <div key={i} className="list-group-item list-group-item-action">
                                                     <div className="d-flex w-100 justify-content-between">
                                                         <h5 className="mb-1">{ comment.name }</h5>
-                                                        <small>@{ comment.email }</small>
+                                                        <small>{ comment.email.toLowerCase() }</small>
                                                     </div>
                                                     <p className="mb-1">{ comment.body }</p>
                                                 </div>
