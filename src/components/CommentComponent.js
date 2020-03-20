@@ -163,7 +163,7 @@ class CommentItem extends React.Component {
                                 return (
                                     <div key={i} className="list-group-item list-group-item-action">
                                         <div className="d-flex w-100 justify-content-between">
-                                            <h5 className="mb-1">{ comment.name }</h5>
+                                            <h5 className="mb-1"><span className="comment-name">{ comment.name }</span></h5>
                                             <small>{ comment.email.toLowerCase() }</small>
                                         </div>
                                         <p className="mb-1">{ comment.body }</p>

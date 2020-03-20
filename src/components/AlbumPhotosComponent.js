@@ -65,7 +65,7 @@ class Users extends React.Component {
                             return (
                                 <div key={i} className="col-xl-3 col-md-6 mb-4">
                                     <div className="card border-0 shadow">
-                                        <Link to="" data-toggle="modal" data-target="#exampleModal" onClick={(e) => this.handleShowModal(photo, e)}>
+                                        <Link to="" className="photo" data-toggle="modal" data-target="#exampleModal" onClick={(e) => this.handleShowModal(photo, e)}>
                                             <input className="photo-url" value={photo.url} type="hidden" /> 
                                             <img src={ photo.thumbnailUrl } className="card-img-top" alt="..." />
                                         </Link>
