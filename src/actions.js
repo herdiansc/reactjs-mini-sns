@@ -85,7 +85,7 @@ export function getAlbumPhotos(payload) {
 export function createPost(payload) {
     return dispatch => {
         dispatch({ type: START_FETCHING});
-        return fetch(`${ API_SERVER_HOST }/photos`, {
+        return fetch(`${ API_SERVER_HOST }/posts`, {
                 method: 'POST',
                 body: JSON.stringify(payload),
                 headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -99,7 +99,7 @@ export function createPost(payload) {
 export function editPost(payload) {
     return dispatch => {
         dispatch({ type: START_FETCHING});
-        return fetch(`${ API_SERVER_HOST }/photos/${payload.postId}`, {
+        return fetch(`${ API_SERVER_HOST }/posts/${payload.postId}`, {
                 method: 'PUT',
                 body: JSON.stringify(payload.data),
                 headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -113,7 +113,7 @@ export function editPost(payload) {
 export function deletePost(payload) {
     return dispatch => {
         dispatch({ type: START_FETCHING});
-        return fetch(`${ API_SERVER_HOST }/photos/${payload}`, {
+        return fetch(`${ API_SERVER_HOST }/posts/${payload}`, {
                 method: 'DELETE'
             })
             .then(response => {
@@ -122,10 +122,10 @@ export function deletePost(payload) {
     }
 }
 
-export function createUser(payload) {
+export function createComment(payload) {
     return dispatch => {
         dispatch({ type: START_FETCHING});
-        return fetch(`${ API_SERVER_HOST }/users`, {
+        return fetch(`${ API_SERVER_HOST }/comments`, {
                 method: 'POST',
                 body: JSON.stringify(payload),
                 headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -136,10 +136,10 @@ export function createUser(payload) {
     }
 }
 
-export function deleteUser(payload) {
+export function deleteComment(payload) {
     return dispatch => {
         dispatch({ type: START_FETCHING});
-        return fetch(`${ API_SERVER_HOST }/users/${payload}`, {
+        return fetch(`${ API_SERVER_HOST }/comments/${payload}`, {
                 method: 'DELETE'
             })
             .then(response => {
@@ -148,10 +148,10 @@ export function deleteUser(payload) {
     }
 }
 
-export function editUser(payload) {
+export function editComment(payload) {
     return dispatch => {
         dispatch({ type: START_FETCHING});
-        return fetch(`${ API_SERVER_HOST }/users/${payload.id}`, {
+        return fetch(`${ API_SERVER_HOST }/comments/${payload.id}`, {
                 method: 'PUT',
                 body: JSON.stringify(payload.data),
                 headers: {"Content-type": "application/json; charset=UTF-8"}
