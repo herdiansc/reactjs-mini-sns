@@ -25,7 +25,7 @@ class Notification extends React.Component {
                 alertBody = (
                     <React.Fragment>
                         <p>The operation is successful. However json placeholder is read only, so all non read only access will be mocked up by json placeholder</p>
-                        <p className="mb-0">Thus, the bellow actual content doesn't updated</p>
+                        <p className="mb-0">Thus, the bellow actual content may not be updated.</p>
                     </React.Fragment>
                 );
             } else {
