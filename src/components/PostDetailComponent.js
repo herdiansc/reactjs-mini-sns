@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getPostDetail, getPostComments, editPost, deletePost } from '../actions';
 import NotificationComponent from './NotificationComponent.js'
+import CommentComponent from './CommentComponent.js'
 
 const mapStateToProps = state => {
     return { post: state.post, comments: state.comments, user: state.user };
@@ -11,9 +12,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getPostDetail: payload => dispatch(getPostDetail(payload)),
-        getPostComments: payload => dispatch(getPostComments(payload)),
         editPost: payload => dispatch(editPost(payload)),
-        deletePost: payload => dispatch(deletePost(payload))
+        deletePost: payload => dispatch(deletePost(payload)),
+        getPostComments: payload => dispatch(getPostComments(payload))
     };
 }
 
@@ -22,8 +23,7 @@ class PostDetail extends React.Component {
         super(props);
         this.state = {
             isEditFormShown: false,
-            postBody: '',
-            postTitle: ''
+            isCommentFormShown: false
         };
 
         this.postBody = React.createRef();
@@ -32,8 +32,15 @@ class PostDetail extends React.Component {
 
     componentDidMount() {
         let { match: { params } } = this.props;
-        this.props.getPostDetail(params.post_id);
+        this.loadPost(params.post_id);
         this.props.getPostComments(params.post_id);
+    }
+
+    loadPost(id) {
+        this.props.getPostDetail(id).then(()=>{
+            this.postBody.current.value = this.props.post.body;
+            this.postTitle.current.value = this.props.post.title;
+        });
     }
 
     breadcrumb() {
@@ -58,23 +65,26 @@ class PostDetail extends React.Component {
                 title: this.postTitle.current.value,
                 userId: this.props.post.userId
             }
-        })
+        }).then(()=>{
+            this.loadPost(this.props.post.id);
+        });
         this.handleShowEditForm(false);
     }
 
     showEditPostForm() {
+        let displayStyle = this.state.isEditFormShown ? {} : {display:'none'};
         return (
-            <div className="row">
+            <div className="row" style={displayStyle}>
                 <div className="col-md-12">
                     <form className="border mb-4 mt-4 p-4">
                         <div className="form-row mb-4">
                             <div className="col">
-                                <textarea className="form-control" placeholder="Body" name="postBody" ref={this.postBody}></textarea>
+                                <textarea className="form-control" placeholder="Body" ref={this.postBody}></textarea>
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="col-md-8">
-                                <input type="text" className="form-control" placeholder="Title" name="postTitle" ref={this.postTitle} />
+                                <input type="text" className="form-control" placeholder="Title" ref={this.postTitle} />
                             </div>
                             <div className="col">
                                 <div className="btn-group float-right" role="group">
@@ -90,8 +100,9 @@ class PostDetail extends React.Component {
     }
 
     showPostText() {
+        let displayStyle = !this.state.isEditFormShown ? {} : {display:'none'};
         return (
-            <div className="masthead border pt-4 pb-4">                            
+            <div className="masthead border pt-4 pb-4" style={displayStyle}>                            
                 <div className="container d-flex flex-column">
                     <h1 className="mb-0">{ this.props.post.title }</h1>
                     <div className="divider-custom divider-light">
@@ -105,20 +116,15 @@ class PostDetail extends React.Component {
         )
     }
 
-    showPost() {
-        if (this.state.isEditFormShown) {
-            return this.showEditPostForm();
-        } else {
-            return this.showPostText();
-        }
-    }
-
     handleShowEditForm(isShown) {
         this.setState({isEditFormShown: isShown})
     }
 
     handleDeletPost() {
         this.props.deletePost(this.props.post.id)
+        .then(()=>{
+            this.props.history.push("/user/detail/"+this.props.post.userId);
+        });
     }
 
     render() {
@@ -138,30 +144,12 @@ class PostDetail extends React.Component {
                                 </div>
                             </div>
                             <NotificationComponent />
-                            { this.showPost() }
+                            { this.showEditPostForm() }
+                            { this.showPostText() }
                         </div>
 
-                        <div className="albums mt-4 mb-4 pt-4 pb-4">
-                            <h3 className="">Comment</h3>
-                  
-                            <div className="row">
-                                <div className="col-md-12">
-                                    <div className="list-group">
-                                        {this.props.comments.map((comment, i) => {
-                                            return (
-                                                <div key={i} className="list-group-item list-group-item-action">
-                                                    <div className="d-flex w-100 justify-content-between">
-                                                        <h5 className="mb-1">{ comment.name }</h5>
-                                                        <small>{ comment.email.toLowerCase() }</small>
-                                                    </div>
-                                                    <p className="mb-1">{ comment.body }</p>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <CommentComponent />
+
                     </div>
                 </div>
             </div>
