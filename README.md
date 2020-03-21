@@ -25,5 +25,7 @@ This is a client app for json placeholder built-in endpoints, build with react j
 
 ## How to Run Unit Test
 - Enter app root directory
-- Execute command `go test ./...`
+- Execute command `npm run-script test`
 
+## Demo
+https://reactjs-mini-sns.herokuapp.com/
