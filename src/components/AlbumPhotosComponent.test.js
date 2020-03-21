@@ -1,14 +1,17 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
-import AlbumPhotosComponent from './AlbumPhotosComponent';
 import configureStore from 'redux-mock-store';
-const mockStore = configureStore([]);
+import { mount, configure } from 'enzyme';
+import thunk from 'redux-thunk';
+
+import AlbumPhotosComponent from './AlbumPhotosComponent';
+
+const mockStore = configureStore([thunk]);
 
 describe('AlbumPhotosComponent test suites', ()=> {
 	let store;
-	let component;
+	let wrapper;
 
 	beforeEach(() => {
 		store = mockStore({
@@ -31,9 +34,7 @@ describe('AlbumPhotosComponent test suites', ()=> {
 			user: {"id": 1}
 		});
 
-		store.dispatch = jest.fn();
-
-		component = renderer.create(
+		wrapper = mount(
 			<Provider store={store}>
 				<Router>
 					<AlbumPhotosComponent
@@ -41,10 +42,10 @@ describe('AlbumPhotosComponent test suites', ()=> {
 					/>
 				</Router>
 			</Provider>
-		);
+        );
 	});
 
-    it('Album should have 2 photos', ()=> {
-        expect(component.root.findAllByProps({className:'card border-0 shadow'}).length).toEqual(2);
+    it('should have 2 photos', ()=> {
+        expect(wrapper.find('div.card.border-0.shadow').length).toEqual(2);
     });
 });

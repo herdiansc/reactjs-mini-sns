@@ -1,13 +1,17 @@
 import React from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import CommentComponent from './CommentComponent';
 import configureStore from 'redux-mock-store';
+import { mount, configure } from 'enzyme';
+
+import CommentComponent from './CommentComponent';
+
 const mockStore = configureStore([]);
 
 describe('CommentComponent test suites', ()=> {
 	let store;
-	let component;
+	let wrapper;
 
 	beforeEach(() => {
 		store = mockStore({
@@ -30,28 +34,16 @@ describe('CommentComponent test suites', ()=> {
 			post: {"id": 1}
 		});
 
-		store.dispatch = jest.fn();
-
-		component = renderer.create(
+		wrapper = mount(
 			<Provider store={store}>
-				<CommentComponent />
+				<Router>
+					<CommentComponent />
+				</Router>
 			</Provider>
-		);
+        );
 	});
 
     it('should have 2 comments', ()=> {
-        expect(component.root.findAllByProps({className:'list-group-item list-group-item-action'}).length).toEqual(2);
-    });
-
-    it('should contains specified comment name/title', ()=> {
-    	expect(
-    		component.root.findAllByProps({className:'comment-name'})[0].children[0]
-    	).toBe('title comment');
-    });
-
-    it('should contains 2 action button', ()=> {
-    	expect(
-    		component.root.findAllByProps({className:'btn-group'})[0].children.length
-    	).toBe(2);
+        expect(wrapper.find('div.list-group-item.list-group-item-action').length).toEqual(2);
     });
 });

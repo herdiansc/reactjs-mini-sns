@@ -2,40 +2,42 @@ import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import HomeComponent from './HomeComponent';
 import configureStore from 'redux-mock-store';
+import { mount, configure } from 'enzyme';
+
+import HomeComponent from './HomeComponent';
+
 const mockStore = configureStore([]);
 
 describe('HomeComponent test suites', ()=> {
 	let store;
-	let component;
+	let wrapper;
 
 	beforeEach(() => {
 		store = mockStore({});
 
-		component = renderer.create(
+		wrapper = mount(
 			<Provider store={store}>
 				<Router>
-					<HomeComponent
-					/>
+					<HomeComponent />
 				</Router>
 			</Provider>
-		);
+        );
 	});
 
     it('should have 1 h1', ()=> {
-        expect(component.root.findAllByType('h1').length).toBe(1);
+        expect(wrapper.find('h1').length).toBe(1);
     });
 
     it('should have 1 h1 with specified text', ()=> {
-        expect(component.root.findAllByType('h1')[0].children[0]).toBe('Mini Social Media App');
+        expect(wrapper.find('h1').text()).toBe('Mini Social Media App');
     });
 
     it('should have 1 link', ()=> {
-        expect(component.root.findAllByType('a').length).toBe(1);
+        expect(wrapper.find('a').length).toBe(1);
     });
 
     it('should have 1 link with specified text', ()=> {
-        expect(component.root.findAllByType('a')[0].children[0]).toBe('Explore');
+        expect(wrapper.find('a').text()).toBe('Explore');
     });
 });

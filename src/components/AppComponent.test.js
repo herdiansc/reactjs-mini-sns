@@ -1,29 +1,30 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
-import AppComponent from './AppComponent';
 import configureStore from 'redux-mock-store';
+import { mount, configure } from 'enzyme';
+
+import AppComponent from './AppComponent';
+
 const mockStore = configureStore([]);
 
 describe('AppComponent test suites', ()=> {
 	let store;
-	let component;
+	let wrapper;
 
 	beforeEach(() => {
 		store = mockStore({});
 
-		component = renderer.create(
+		wrapper = mount(
 			<Provider store={store}>
 				<Router>
-					<AppComponent
-					/>
+					<AppComponent />
 				</Router>
 			</Provider>
-		);
+        );
 	});
 
     it('should have 1 div children', ()=> {
-        expect(component.root.children.length).toBe(1);
+        expect(wrapper.find(AppComponent).length).toEqual(1);
     });
 });

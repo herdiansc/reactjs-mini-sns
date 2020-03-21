@@ -168,8 +168,8 @@ class CommentItem extends React.Component {
                                         </div>
                                         <p className="mb-1">{ comment.body }</p>
                                         <div className="btn-group" role="group">
-                                            <button type="button" className="btn btn-sm text-white bg-kumparan" data-toggle="modal" data-target="#exampleModal" onClick={() => this.handleShowModalEditComment(comment)}>Edit</button>
-                                            <button type="button" className="btn btn-sm btn-danger"  onClick={() => this.handleDeleteComment(comment.id)}>Delete</button>
+                                            <button type="button" className="comment-action-btn btn btn-sm text-white bg-kumparan" data-toggle="modal" data-target="#exampleModal" onClick={() => this.handleShowModalEditComment(comment)}>Edit</button>
+                                            <button type="button" className="comment-action-btn btn btn-sm btn-danger"  onClick={() => this.handleDeleteComment(comment.id)}>Delete</button>
                                         </div>
                                     </div>
                                 )

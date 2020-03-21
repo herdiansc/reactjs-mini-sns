@@ -1,29 +1,32 @@
 import React from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
-import NotificationComponent from './NotificationComponent';
 import configureStore from 'redux-mock-store';
+import { mount, configure } from 'enzyme';
+
+import NotificationComponent from './NotificationComponent';
+
 const mockStore = configureStore([]);
 
 describe('NotificationComponent test suites', ()=> {
 	let store;
-	let component;
+	let wrapper;
 
 	beforeEach(() => {
 		store = mockStore({
 			writeAccessResponseCode: 200
 		});
 
-		store.dispatch = jest.fn();
-
-		component = renderer.create(
+		wrapper = mount(
 			<Provider store={store}>
-				<NotificationComponent />
+				<Router>
+					<NotificationComponent />
+				</Router>
 			</Provider>
-		);
+        );
 	});
 
     it('should be success notif', ()=> {
-        expect(component.root.findAllByProps({className:'alert alert-success'}).length).toEqual(1);
+        expect(wrapper.find('div.alert.alert-success').length).toEqual(1);
     });
 });

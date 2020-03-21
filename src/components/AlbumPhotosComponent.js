@@ -43,7 +43,7 @@ class Users extends React.Component {
                 <li className="breadcrumb-item"><Link to={`/`}>Home</Link></li>
                 <li className="breadcrumb-item"><Link to={`/user`}>Users</Link></li>
                 { userDetail }
-                <li class="breadcrumb-item active" aria-current="page">Photos</li>
+                <li className="breadcrumb-item active" aria-current="page">Photos</li>
             </ol>
         </nav>
         )
