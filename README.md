@@ -1,5 +1,5 @@
 # Mini Social Media App
-This is a client app for json placeholder built-in endpoints, build with react js and redux.
+This is a client app for json placeholder(https://jsonplaceholder.typicode.com/) built-in endpoints, build with react js and redux.
 ## Features
 - Show list users
 - Show detail user
