@@ -1,5 +1,4 @@
 import React from 'react';
-// import { shallow } from 'enzyme';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
@@ -48,12 +47,4 @@ describe('AlbumPhotosComponent test suites', ()=> {
     it('Album should have 2 photos', ()=> {
         expect(component.root.findAllByProps({className:'card border-0 shadow'}).length).toEqual(2);
     });
-
-    // it('A modal should be displayed when a photo clicked', ()=> {
-    // 	renderer.act(()=>{
-    //   		component.root.findAllByProps({className:'photo'})[0].props.onClick();
-    // 	})
-    // 	expect(1).toEqual(1);
-    // });
-
 });

@@ -42,7 +42,7 @@ class Notification extends React.Component {
                                     <h4 className="alert-heading">{alertTitle}</h4>
                                     {alertBody}
                                     <hr />
-                                    <button type="button" class="btn btn-sm btn-info mt-4" data-dismiss="alert" aria-label="Close" onClick={()=>this.handleCloseNotification()}>
+                                    <button type="button" className="btn btn-sm btn-info mt-4" data-dismiss="alert" aria-label="Close" onClick={()=>this.handleCloseNotification()}>
                                         Close
                                     </button>
                                 </div>
