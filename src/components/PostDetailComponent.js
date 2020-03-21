@@ -135,8 +135,8 @@ class PostDetail extends React.Component {
                     <div className="col-md-12">
                         <div className="post mt-4 mb-4 pt-4 pb-4">
                             <div className="row">
-                                <div className="col-md-6"><h3 className="">Post</h3></div>
-                                <div className="col-md-6">
+                                <div className="col"><h3 className="">Post</h3></div>
+                                <div className="col">
                                     <div className="btn-group float-right" role="group">
                                         <button type="button" className="btn btn-sm text-white bg-kumparan" onClick={() => this.handleShowEditForm(true)}>Edit</button>
                                         <button type="button" className="btn btn-sm btn-danger"  onClick={() => this.handleDeletPost()}>Delete</button>

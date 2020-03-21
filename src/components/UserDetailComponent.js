@@ -126,8 +126,8 @@ class UserDetail extends React.Component {
 
                         <div className="albums mt-4 mb-4 pt-4 pb-4">
                             <div className="row">
-                                <div className="col-md-6"><h3 className="">Post</h3></div>
-                                <div className="col-md-6">
+                                <div className="col"><h3 className="">Post</h3></div>
+                                <div className="col">
                                     <button type="button" className="btn btn-sm text-white bg-kumparan float-right" onClick={(e) => { this.handleShowPostForm(true, e)}}>Add</button>
                                 </div>
                             </div>
