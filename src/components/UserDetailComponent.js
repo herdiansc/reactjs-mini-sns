@@ -58,10 +58,10 @@ class UserDetail extends React.Component {
                                 </div>
                             </div>
                             <div className="form-row">
-                                <div className="col-md-8">
+                                <div className="col-sm-8 mb-4">
                                     <input type="text" className="form-control" placeholder="Title" value={this.state.postTitle} name="postTitle" onChange={(e) => this.handleInputChange(e)} />
                                 </div>
-                                <div className="col">
+                                <div className="col-sm-4 mb-4">
                                     <div className="btn-group float-right" role="group">
                                         <button type="button" className="btn bg-default border"  onClick={(e) => this.handleShowPostForm(false, e)}>Cancel</button>
                                         <button type="button" className="btn text-white bg-kumparan" onClick={(e) => this.handleSubmitPostForm(e)}>Submit</button>
