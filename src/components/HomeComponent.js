@@ -6,11 +6,11 @@ class HomeComponent extends React.Component {
         return (
             <div className="search-form-container">
                 <div className="row search-form" style={{"display":"block", "textAlign":"center"}}>
-                    <h1>Mini Social Media App</h1>
+                    <h1>React Mini SNS</h1>
                     <hr />
                     <p>
                         This is a client app to show built-in json placeholder resources.<br />
-                        Developed using react js.
+                        Developed using react js and react-redux.
                     </p>
                     <Link to={`/user`} className="btn bg-kumparan text-white btn-sm">Explore</Link>
                 </div>

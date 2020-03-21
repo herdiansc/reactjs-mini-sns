@@ -30,7 +30,7 @@ describe('HomeComponent test suites', ()=> {
     });
 
     it('should have 1 h1 with specified text', ()=> {
-        expect(wrapper.find('h1').text()).toBe('Mini Social Media App');
+        expect(wrapper.find('h1').text()).toBe('React Mini SNS');
     });
 
     it('should have 1 link', ()=> {
