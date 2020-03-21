@@ -83,10 +83,10 @@ class PostDetail extends React.Component {
                             </div>
                         </div>
                         <div className="form-row">
-                            <div className="col-md-8">
+                            <div className="col-sm-8 mb-4">
                                 <input type="text" className="form-control" placeholder="Title" ref={this.postTitle} />
                             </div>
-                            <div className="col">
+                            <div className="col-sm-4 mb-4">
                                 <div className="btn-group float-right" role="group">
                                     <button type="button" className="btn bg-default border"  onClick={() => this.handleShowEditForm(false)}>Cancel</button>
                                     <button type="button" className="btn text-white bg-kumparan" onClick={(e) => this.handleSubmitEditPostForm(e)}>Submit</button>
