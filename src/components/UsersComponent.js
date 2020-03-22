@@ -51,10 +51,10 @@ class Users extends React.Component {
                                                 <Link to={`/user/detail/${item.id}`} key={i} className="list-group-item list-group-item-action">
                                                     <div className="d-flex w-100 justify-content-between">
                                                         <h5 className="mb-1">{ item.name }</h5>
-                                                        <small>@{ item.username }</small>
+                                                        <small>@{ item.username.toLowerCase() }</small>
                                                     </div>
-                                                    <p className="mb-1"><span className="font-weight-bolder">Alamat:</span> { item.address.street } { item.address.suite } { item.address.city } { item.address.zipcode }</p>
-                                                    <small><span className="font-weight-bolder">Tel:</span> { item.phone }, <span className="font-weight-bolder">Email:</span> { item.email }</small>
+                                                    <p className="mb-1"><span className="font-weight-bolder">Address:</span> { item.address.street } { item.address.suite } { item.address.city } { item.address.zipcode }</p>
+                                                    <small><span className="font-weight-bolder">Phone:</span> { item.phone }, <span className="font-weight-bolder">Email:</span> { item.email }</small>
                                                 </Link>
                                             )
                                         })}
