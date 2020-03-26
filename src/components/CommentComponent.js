@@ -129,7 +129,7 @@ class CommentItem extends React.Component {
                             </div>
                             <div className="form-row mb-4">
                                 <div className="col">
-                                    <input type="text" className="form-control" placeholder="Email" ref={this.modalCommentEmail} />
+                                    <input type="text" className="form-control text-lowercase" placeholder="Email" ref={this.modalCommentEmail} />
                                 </div>
                             </div>
                         </form>
@@ -164,7 +164,7 @@ class CommentItem extends React.Component {
                                     <div key={i} className="list-group-item list-group-item-action">
                                         <div className="d-flex w-100 justify-content-between">
                                             <h5 className="mb-1"><span className="comment-name">{ comment.name }</span></h5>
-                                            <small>{ comment.email.toLowerCase() }</small>
+                                            <span className="text-lowercase"><small>{ comment.email.toLowerCase() }</small></span>
                                         </div>
                                         <p className="mb-1">{ comment.body }</p>
                                         <div className="btn-group" role="group">

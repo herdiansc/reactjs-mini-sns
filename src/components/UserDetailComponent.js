@@ -102,7 +102,7 @@ class UserDetail extends React.Component {
                     <div className="container d-flex align-items-center flex-column">
                         <img className="masthead-avatar mb-5" src="/static/images/avataaars.svg" alt="" />
                         <h1 className="masthead-heading mb-0">{ this.props.user.name }</h1>
-                        <p className="masthead-subheading font-weight-light mb-0">
+                        <p className="masthead-subheading font-weight-light mb-0 text-lowercase">
                             { this.props.user.phone } - { this.props.user.email } - { this.props.user.website }
                         </p>
                     </div>
