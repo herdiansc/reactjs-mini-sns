@@ -119,16 +119,19 @@ class CommentItem extends React.Component {
                             <input type="hidden" ref={this.modalCommentId} />
                             <div className="form-row mb-4">
                                 <div className="col">
+                                    <label>Name</label>
                                     <input type="text" className="form-control" placeholder="Name" ref={this.modalCommentName} />
                                 </div>
                             </div>
                             <div className="form-row mb-4">
                                 <div className="col">
+                                    <label>Body</label>
                                     <textarea className="form-control" placeholder="Body" ref={this.modalCommentBody}></textarea>
                                 </div>
                             </div>
                             <div className="form-row mb-4">
                                 <div className="col">
+                                    <label>Email</label>
                                     <input type="text" className="form-control text-lowercase" placeholder="Email" ref={this.modalCommentEmail} />
                                 </div>
                             </div>
