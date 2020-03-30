@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { mount, configure } from 'enzyme';
+import { mount } from 'enzyme';
 import thunk from 'redux-thunk';
 
 import UserDetailComponent from './UserDetailComponent';

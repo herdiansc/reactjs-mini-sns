@@ -1,9 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import { mount, configure } from 'enzyme';
+import { mount } from 'enzyme';
 
 import CommentComponent from './CommentComponent';
 
