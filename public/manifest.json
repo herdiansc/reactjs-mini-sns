@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "React Mini SNS",
+  "name": "This is an app for built-in json placeholder resources. Developed using react js and redux.",
   "icons": [
     {
       "src": "favicon.ico",
