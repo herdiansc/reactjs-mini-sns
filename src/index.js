@@ -14,7 +14,7 @@ import PostDetailComponent from './components/PostDetailComponent.js';
 
 ReactDOM.render(
 	<Provider store={store}>
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
         <Route component={AppComponent} />
         <Route path="/" exact component={HomeComponent}/>
         <Route path="/user" exact component={UsersComponent}/>
@@ -29,4 +29,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();
+serviceWorker.unregister();
